@@ -23,6 +23,6 @@
 #### - Кошик повинен зберігати:
      - Обрані користувачем продукти та кількість кожного обраного продукту
 
-#### Для заповнення магазину продуктами, скористайтесь статичним методом #fillShopWithProducts(Map<String, Double> shopProductStorage) із класу [ShopFiller](src/main/java/org/itstep/jcf/shop/util/ShopFiller.java)
+#### Для заповнення магазину продуктами, скористайтесь статичним методом #fillShopWithProducts із класу [ShopFiller](src/main/java/org/itstep/jcf/shop/util/ShopFiller.java)
 #
 ### [Для того щоб протестувати свою реалізацію, запустіть [ProductShopTest](src/test/java/shop/impl/ProductShopTest.java) файл.]
