@@ -230,23 +230,23 @@ class ProductShopTest {
     }
 
     private void verifyShopCart(Map<String, Integer> addedProducts, String shopCart) {
-        List<String> list = Arrays.asList(
-                shopCart.replace("[", "").replace("]", "").trim().split(",")
-        );
-        list.sort(Comparator.comparing(p -> p.charAt(1)));
+        List<String> list = new ArrayList<>(Arrays.stream(
+                shopCart.replace("[", "").replace("]", "").trim().split(",| (,%s)")
+        ).map(String::trim).toList());
+        list.sort(Comparator.comparing(p -> p.charAt(1) + p.charAt(0)));
         List<String> productList = new ArrayList<>(addedProducts.entrySet().stream()
                 .map(entry -> entry.getKey() + " - " + entry.getValue())
                 .toList());
-        productList.sort(Comparator.comparing(p -> p.charAt(1)));
+        productList.sort(Comparator.comparing(p -> p.charAt(1) + p.charAt(0)));
         assertEquals(productList, list);
     }
 
     private void verifyShopCart(List<String> addedProducts, String shopCart) {
-        List<String> list = Arrays.asList(
+        List<String> list = new ArrayList<>(Arrays.stream(
                 shopCart.replaceAll("[^a-zA-Z]+", " ").trim().split("\\s+")
-        );
-        list.sort(Comparator.comparing(p -> p.charAt(1)));
-        addedProducts.sort(Comparator.comparing(p -> p.charAt(1)));
+        ).map(String::trim).toList());
+        list.sort(Comparator.comparing(p -> p.charAt(1) + p.charAt(0)));
+        addedProducts.sort(Comparator.comparing(p -> p.charAt(1) + p.charAt(0)));
         assertEquals(addedProducts, list);
     }
 }
